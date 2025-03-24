@@ -1,0 +1,258 @@
+/* Estilos base */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fcfcfd 0%, #ecedef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.auth-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease-out;
+}
+
+.auth-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+.auth-header h2 {
+    color: #084298;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Tabs */
+.nav-tabs {
+    border: none;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #6c757d;
+    font-weight: 500;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-tabs .nav-link:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #0d6efd;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    background: none;
+}
+
+.nav-tabs .nav-link.active:after {
+    width: 100%;
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #495057;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.input-group {
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    transform: translateX(5px);
+}
+
+.input-group-text {
+    background: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #0d6efd;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+/* Botones */
+.btn-primary {
+    background: #0d6efd;
+    border: none;
+    padding: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #084298;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(8, 66, 152, 0.3);
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Grupos de campos */
+.__nombre, .__segundo_grupo, .__tercer_grupo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .__nombre, .__segundo_grupo, .__tercer_grupo {
+        grid-template-columns: 1fr;
+    }
+    
+    .auth-box {
+        padding: 20px;
+    }
+}
+
+/* Transiciones de tabs */
+.tab-pane {
+    transition: all 0.3s ease-in-out;
+}
+
+.tab-pane.fade {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+.tab-pane.fade.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Estilos para el botón volver */
+.back-button-container {
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    color: #084298;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-back:hover {
+    background: #fff;
+    transform: translateX(-5px);
+    color: #0d6efd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.btn-back span {
+    font-weight: 500;
+}
+
+/* Animación para el botón */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.btn-back {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+/* Ajuste responsive */
+@media (max-width: 576px) {
+    .back-button-container {
+        margin-bottom: 15px;
+    }
+    
+    .btn-back {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}

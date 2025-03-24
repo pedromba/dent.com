@@ -1,0 +1,66 @@
+.servicios-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.servicio-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.servicio-header {
+    background-color: #0d6efd;
+    color: white;
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+.servicio-body {
+    padding: 20px;
+}
+
+.servicio-footer {
+    padding: 15px;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #6c757d;
+}
+
+.doctor-info i {
+    color: #0d6efd;
+}
+
+.btn-ver-mas {
+    background-color: transparent;
+    color: #0d6efd;
+    border: 1px solid #0d6efd;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-ver-mas:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.acciones-servicio {
+    display: flex;
+    gap: 10px;
+}

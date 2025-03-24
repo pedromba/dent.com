@@ -1,0 +1,398 @@
+:root {
+    --color-primario: #007bff;
+    --color-secundario: #6c757d;
+    --color-acento: #00bcd4;
+    --color-texto: #333333;
+    --color-fondo-claro: #f8f9fa;
+    --color-blanco: #ffffff;
+    --sombra-suave: 0 2px 15px rgba(0,0,0,0.1);
+    --transicion: all 0.3s ease;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-primario);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--color-blanco);
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion);
+    padding: 1rem 0;
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+}
+
+.btn-login {
+    background-color: var(--color-primario);
+    color: var(--color-blanco) !important;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem !important;
+    transition: var(--transicion);
+}
+
+.btn-login:hover {
+    background-color: var(--color-acento);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../img/clinica.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-blanco);
+    padding-top: 80px;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Servicios */
+.service-card {
+    background: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion);
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+}
+/* Sección de Estadísticas */
+.estadisticas {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    position: relative;
+    overflow: hidden;
+}
+
+.estadistica-item {
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.estadistica-item:hover {
+    transform: translateY(-10px);
+}
+
+.estadistica-item i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.estadistica-item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.estadistica-item p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Efectos de partículas */
+.estadisticas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+
+/* Doctores */
+
+.doctor-card {
+    background: var(--color-blanco);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion);
+}
+
+.doctor-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-img img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: var(--transicion);
+}
+
+.doctor-card:hover .doctor-img img {
+    transform: scale(1.1);
+}
+
+.doctor-info {
+    padding: 1.5rem;
+}
+
+.social-links{
+    color: red;
+}
+
+/* Testimonios */
+.testimonio-card {
+    background: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 2rem;
+}
+
+.testimonio-texto {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.testimonio-texto i {
+    color: var(--color-primario);
+    font-size: 2rem;
+    opacity: 0.2;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+.testimonio-autor {
+    display: flex;
+    align-items: center;
+}
+
+.testimonio-autor img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+
+/* Sección de Contacto */
+.contacto {
+    background-color: var(--color-fondo-claro);
+}
+
+.info-contacto {
+    background: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--sombra-suave);
+    height: 100%;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--color-primario);
+    margin-right: 1rem;
+    margin-top: 0.25rem;
+}
+
+.info-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.info-item p {
+    margin-bottom: 0.25rem;
+    color: var(--color-secundario);
+}
+
+.formulario-contacto {
+    background: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--sombra-suave);
+}
+
+.formulario-contacto .form-control,
+.formulario-contacto .form-select {
+    border: 1px solid #e0e0e0;
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.formulario-contacto .form-control:focus,
+.formulario-contacto .form-select:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.formulario-contacto textarea {
+    resize: none;
+}
+
+.formulario-contacto button {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    width: 100%;
+}
+
+
+/* Footer */
+.footer {
+    background-color: #1a1a1a;
+    color: var(--color-blanco);
+}
+
+.footer h5 {
+    color: var(--color-blanco);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer h5::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-primario);
+}
+
+.horario-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.horario-lista li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.social-links a {
+    color: var(--color-blanco);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: var(--transicion);
+}
+
+.social-links a:hover {
+    color: var(--color-primario);
+    transform: translateY(-3px);
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-contacto {
+        margin-bottom: 2rem;
+    }
+    
+    .formulario-contacto {
+        padding: 1.5rem;
+    }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section {
+        text-align: center;
+    }
+
+    .counter {
+        font-size: 2rem;
+    }
+
+    .footer {
+        text-align: center;
+    }
+
+    .footer h5::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive estadisticas*/
+
+@media (max-width: 768px) {
+    .estadistica-item {
+        padding: 1.5rem;
+    }
+
+    .estadistica-item h3 {
+        font-size: 2rem;
+    }
+
+    .estadistica-item i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .estadistica-item {
+        padding: 1rem;
+    }
+
+    .estadistica-item h3 {
+        font-size: 1.8rem;
+    }
+
+    .estadistica-item i {
+        font-size: 2rem;
+    }
+}
+
+
+
+

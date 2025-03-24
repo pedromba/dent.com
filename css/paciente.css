@@ -1,0 +1,118 @@
+:root {
+    --color-primario: #007bff;
+    --color-secundario: #6c757d;
+    --color-exito: #28a745;
+    --color-advertencia: #ffc107;
+    --color-peligro: #dc3545;
+    --color-info: #17a2b8;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Tarjetas de información */
+.info-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.info-card-content h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--color-secundario);
+}
+
+.info-card-content p {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-primario);
+}
+
+/* Tabla de citas */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+/* Estados de citas */
+.estado-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.estado-pendiente { background: #fff3cd; color: #856404; }
+.estado-confirmada { background: #d4edda; color: #155724; }
+.estado-cancelada { background: #f8d7da; color: #721c24; }
+.estado-completada { background: #cce5ff; color: #004085; }
+
+/* Modal */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-card {
+        padding: 1rem;
+    }
+
+    .info-card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .info-card-content p {
+        font-size: 1.25rem;
+    }
+}
+
+
+.formulario_paciente{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
