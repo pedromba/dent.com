@@ -75,26 +75,27 @@ $id_pacientePaciente = $_SESSION['id_paciente'];
             </button>
         </div>
 
-        <!-- Tabla de Citas -->
         <div class="card">
             <div class="card-header">
-                <h3>Mis Citas</h3>
+                <h3 class="h5 mb-0">Mis Citas</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body p-0 p-md-3">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                                <th>Servicio</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
+                    <table class="table table-hover mb-0">
+                        <!-- ... resto del código ... -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Servicio</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
 
-                        <tbody id="tablaCitas">
-                            <?php
-                            $consulta = "SELECT 
+                            <tbody id="tablaCitas">
+                                <?php
+                                $consulta = "SELECT 
     c.fecha,
     c.hora,
     s.nombre_servicio,
@@ -102,29 +103,30 @@ $id_pacientePaciente = $_SESSION['id_paciente'];
 FROM Citas c
 JOIN Servicio s ON c.id_servicio = s.id_servicio
 JOIN Estado e ON c.estado = e.id_estado
-WHERE c.id_paciente = $id_pacientePaciente";
+WHERE c.id_paciente = $id_pacientePaciente
+ORDER BY c.fecha DESC, c.hora DESC limit 4";
 
-                            $resultado = mysqli_query($conexion, $consulta);
-                            while ($fila = mysqli_fetch_array($resultado)) {
+                                $resultado = mysqli_query($conexion, $consulta);
+                                while ($fila = mysqli_fetch_array($resultado)) {
 
-                            ?>
-                                <tr>
-                                    <td><?php echo $fila['fecha'] ?></td>
-                                    <td><?php echo $fila['hora'] ?></td>
-                                    <td><?php echo $fila['nombre_servicio'] ?></td>
-                                    <td><?php echo $fila['estado_cita'] ?></td>
-                                </tr>
-                            <?php } ?>
+                                ?>
+                                   <tr>
+    <td data-label="Fecha"><?php echo $fila['fecha'] ?></td>
+    <td data-label="Hora"><?php echo $fila['hora'] ?></td>
+    <td data-label="Servicio"><?php echo $fila['nombre_servicio'] ?></td>
+    <td data-label="Estado"><?php echo $fila['estado_cita'] ?></td>
+    <br>
+</tr>
+                                <?php } ?>
 
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 

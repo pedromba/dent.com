@@ -32,10 +32,7 @@ $id_empleado = $_SESSION['id_empleado'];
             <h1>Gestión de Citas</h1>
             <div class="header-actions">
                 <div class="search-box">
-                    <form action="" method="post">
-                        <input type="text" id="buscarPaciente" placeholder="Buscar paciente...">
-                        <i class="fa-search fas"></i>
-                    </form>
+                    
                 </div>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa-user-plus fas"></i> Nuevo Paciente
@@ -104,19 +101,14 @@ $id_empleado = $_SESSION['id_empleado'];
 
                                 </select>
                             </div>
-                            <div class="fecha">
-                                <input class="form-control" type="date" name="fecha" id="">
-                            </div>
-                            <div class="hora">
-                                <input class="form-control" type="time" name="hora" id="">
-                            </div>
+
                             <div class="servicio">
                                 <select class="form-control" name="servicio" id="">
                                     <option selected>Secciona un servicio:</option>
                                     <?php
-                                    $sql = "SELECT* FROM Servicio";
-                                    $result = mysqli_query($conexion, $sql);
-                                    while ($fila = mysqli_fetch_array($result)) {
+                                    $sql = "SELECT * FROM Servicio";
+                                    $result2 = mysqli_query($conexion, $sql);
+                                    while ($fila = mysqli_fetch_array($result2)) {
 
                                     ?>
                                         <option value="<?php echo $fila['id_servicio'] ?>"><?php echo $fila['nombre_servicio'] ?></option>
@@ -124,12 +116,22 @@ $id_empleado = $_SESSION['id_empleado'];
                                     <?php  } ?>
                                 </select>
                             </div>
+                            <div class="fecha">
+                                <input class="form-control" type="date" name="fecha" id="">
+                            </div>
+
+                            <div class="hora">
+                                <input class="form-control" type="time" name="hora" id="">
+                            </div>
+
+
+
 
                             <div class="motivo">
                                 <textarea class="form-control" name="motivo" id="" cols="30" rows="10"></textarea>
                             </div>
 
-                            <div class="empleado">
+                            <div class="estado">
                                 <select class="form-control" name="estado" id="">
                                     <option value="">Estado:</option>
                                     <?php
@@ -210,31 +212,25 @@ $id_empleado = $_SESSION['id_empleado'];
                                 <textarea class="form-control" name="motivo" id="MotivoAct" cols="10" rows="2"></textarea>
                             </div>
 
-                            <div class="empleado">
-                                <select class="form-control" name="estado" id="EstadoAc">
-                                    <option value="">Estado:</option>
-                                    <?php
-
-                                    $estado = "SELECT * FROM estado";
-                                    $resultado = mysqli_query($conexion, $estado);
-                                    while ($fila = mysqli_fetch_assoc($resultado)) {
-                                    ?>
-                                        <option value="<?php echo $fila['id_estado'] ?>"><?php echo $fila['denominacion'] ?></option>
-
-                                    <?php } ?>
-                                </select>
-                            </div>
+                           <!-- En el modal de actualización -->
+<div class="form-group">
+    <label for="EstadoAc">Estado de la cita:</label>
+    <select class="form-control" id="EstadoAc" name="estado" required>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Confirmada">Confirmada</option>
+        <option value="Cancelada">Cancelada</option>
+    </select>
+</div>
 
                             <input class="btn btn-primary" type="submit" value="GUARDAR">
                         </form>
+
                     </div>
-                    <!-- <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button>
-               </div> -->
+                 
                 </div>
             </div>
         </div>
+        <div id="alertPlaceholder" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
     </main>
 
     <script src="./recursos/bootstrap.bundle.min.js"></script>

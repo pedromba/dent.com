@@ -116,3 +116,53 @@
     flex-direction: column;
     gap: 20px;
 }
+
+    /* Estilos base de la tabla */
+    .table-responsive {
+        margin-bottom: 1rem;
+    }
+
+    /* Estilos para dispositivos móviles */
+    @media screen and (max-width: 768px) {
+        table {
+            width: 100%;
+        }
+        
+        thead {
+            display: none; /* Ocultamos el encabezado en móviles */
+        }
+        
+        tr {
+            display: block;
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 0.5rem;
+            background: #fff;
+        }
+        
+        td {
+            display: block;
+            text-align: right;
+            padding: 0.5rem;
+            border: none;
+            position: relative;
+            padding-left: 50%;
+        }
+        
+        td:before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 45%;
+            padding-left: 0.5rem;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        tbody {
+            display: block;
+            max-height: none;
+            overflow-y: visible;
+        }
+    }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -23,6 +23,20 @@ $apellido = $_SESSION['apellido'];
 </head>
 
 <body>
+
+    <style>
+        .tabla-responsive {
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .tabla-citas thead {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+        }
+    </style>
     <!-- Sidebar-->
     <?php include "./componentes/Asidebar.php" ?>
 
@@ -75,7 +89,7 @@ $apellido = $_SESSION['apellido'];
                 <i class="fa-bars fas"></i>
             </button>
             <div class="usuario">
-                <span><?php echo $nombre." ". $apellido ?></span>
+                <span><?php echo $nombre . " " . $apellido ?></span>
                 <img src="./img/empleados/<?php echo $foto ?>" alt="Usuario">
             </div>
             <a href="./php/session_des.php" class="__cerrar"><i class="fa-arrow-right-from-bracket fa-solid"></i></a>
@@ -86,18 +100,18 @@ $apellido = $_SESSION['apellido'];
         <!-- Cards de información -->
         <div class="cards-container">
 
-        <?php 
-        include "./conexion/conexion.php";
-        $count_pacientes = "SELECT *  FROM pacientes";
-        $resultado = mysqli_query($conexion,$count_pacientes);
-        $numero_pacientes = mysqli_num_rows($resultado);
+            <?php
+            include "./conexion/conexion.php";
+            $count_pacientes = "SELECT *  FROM pacientes";
+            $resultado = mysqli_query($conexion, $count_pacientes);
+            $numero_pacientes = mysqli_num_rows($resultado);
 
-    
-        $count_citas_hoy = "SELECT * FROM CITAS WHERE CITAS.fecha = CURDATE()";
-        $resultado = mysqli_query($conexion,$count_citas_hoy);
-        $numero_citas = mysqli_num_rows($resultado);
 
-        $consultas_pendientes = "SELECT 
+            $count_citas_hoy = "SELECT * FROM CITAS WHERE CITAS.fecha = CURDATE() AND CITAS.estado = (SELECT id_estado FROM Estado WHERE denominacion = 'Confirmada')";
+            $resultado = mysqli_query($conexion, $count_citas_hoy);
+            $numero_citas = mysqli_num_rows($resultado);
+
+            $consultas_pendientes = "SELECT 
     Citas.*,
     Servicio.nombre_servicio,
     Estado.denominacion AS estado_cita
@@ -107,9 +121,13 @@ $apellido = $_SESSION['apellido'];
     JOIN Estado ON Citas.estado = Estado.id_estado
     WHERE 
     Estado.denominacion = 'Pendiente' AND Citas.fecha = CURDATE()";
-    $resultado = mysqli_query($conexion,$consultas_pendientes);
-    $numero_pendientes = mysqli_num_rows($resultado);
-        ?>
+            $resultado = mysqli_query($conexion, $consultas_pendientes);
+            $numero_pendientes = mysqli_num_rows($resultado);
+
+            $sql_trat = "SELECT * FROM historial_medico";
+            $result = mysqli_query($conexion, $sql_trat);
+            $numero_trat = mysqli_num_rows($result);
+            ?>
             <div class="card-info bg-azul">
                 <i class="fa-user-friends fas"></i>
                 <div>
@@ -135,7 +153,7 @@ $apellido = $_SESSION['apellido'];
                 <i class="fa-tooth fas"></i>
                 <div>
                     <h3>Tratamientos</h3>
-                    <p>25</p>
+                    <p><?php echo $numero_trat ?></p>
                 </div>
             </div>
         </div>
@@ -146,6 +164,7 @@ $apellido = $_SESSION['apellido'];
             <div class="tabla-responsive">
                 <table class="tabla-citas">
                     <thead>
+
                         <tr>
                             <th>Hora</th>
                             <th>Paciente</th>
@@ -154,18 +173,32 @@ $apellido = $_SESSION['apellido'];
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>09:00</td>
-                            <td>María Dolores</td>
-                            <td>Limpieza Dental</td>
-                            <td><span class="estado pendiente">Pendiente</span></td>
-                        </tr>
-                        <tr>
-                            <td>10:30</td>
-                            <td>Juan Maria</td>
-                            <td>Ortodoncia</td>
-                            <td><span class="completado estado">Completado</span></td>
-                        </tr>
+
+
+                        <?php
+                        $sql = "SELECT c.hora, p.nombre, s.nombre_servicio, e.denominacion
+                            FROM Citas c
+                            JOIN Pacientes p ON c.id_paciente = p.id_paciente
+                            JOIN Servicio s ON c.id_servicio = s.id_servicio 
+                            JOIN Estado e ON c.estado = e.id_estado
+                            WHERE c.fecha = CURDATE() 
+                            AND e.denominacion = 'Confirmada'
+                            ORDER BY c.hora ASC";
+
+                        $resultado = mysqli_query($conexion, $sql);
+                        while ($fila = mysqli_fetch_array($resultado)) {
+
+
+                        ?>
+                            <tr>
+                                <td><?php echo $fila['hora'] ?></td>
+                                <td><?php echo $fila['nombre'] ?></td>
+                                <td><?php echo $fila['nombre_servicio'] ?></td>
+                                <td><?php echo $fila['denominacion'] ?></td>
+                            </tr>
+
+                        <?php } ?>
+
                     </tbody>
                 </table>
             </div>

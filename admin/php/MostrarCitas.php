@@ -25,7 +25,7 @@ LEFT JOIN
 JOIN 
     Estado ON Citas.estado = Estado.id_estado
 ORDER BY 
-    Citas.fecha DESC, Citas.hora DESC";
+    Citas.fecha DESC";
 
     $resultado = mysqli_query($conexion,$consulta);
     while($cita = mysqli_fetch_array($resultado)) {

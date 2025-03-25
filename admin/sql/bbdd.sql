@@ -19,15 +19,7 @@ CREATE TABLE Pacientes (
 
 
 
-SELECT 
-    c.fecha,
-    c.hora,
-    s.nombre_servicio,
-    e.denominacion as estado_cita
-FROM Citas c
-JOIN Servicio s ON c.id_servicio = s.id_servicio
-JOIN Estado e ON c.estado = e.id_estado
-WHERE c.id_paciente = 2;
+
 
 
 select* from pacientes;
@@ -56,6 +48,7 @@ CREATE TABLE Servicio (
     id_empleado INT,
     FOREIGN KEY (id_empleado) REFERENCES Empleados (id_empleado)
 );
+
 
 
 
@@ -119,7 +112,7 @@ CREATE TABLE Citas (
 );
 
 
- -- Ordenado por fecha y hora más reciente
+
 
 
 
@@ -143,6 +136,8 @@ CREATE TABLE Testimonios (
     email VARCHAR(255) NOT NULL,
     testimonio TEXT NOT NULL
 );
+
+
 
 
 

@@ -25,9 +25,7 @@ include "./conexion/conexion.php";
         <div class="header-container">
             <h1>Gestión de Tratamientos</h1>
             <div class="header-actions">
-                <div class="search-box">
-                   
-                </div>
+                
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa-user-plus fas"></i> Nuevo Historial
                 </button>

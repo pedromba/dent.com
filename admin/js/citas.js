@@ -72,37 +72,87 @@
   }
 
 
+  function ActualizarCita(id_cita, nombre_paciente, apellido_paciente, email_paciente, 
+    nombre_empleado, apellido_empleado, especialidad_empleado, 
+    fecha, hora, motivo, estado_cita) {
 
+let modalActualizar = new bootstrap.Modal(document.getElementById('modalActualizacion'));
+modalActualizar.show();
 
-function ActualizarCita(id_cita, nombre_paciente, apellido_paciente, email_paciente, nombre_empleado, apellido_empleado, especialidad_empleado, fecha, hora, motivo, estado_cita) {
+// Rellenar campos del formulario
+document.getElementById('__id_cita').value = id_cita;
+document.getElementById('pacienteAc').value = nombre_paciente;
+document.getElementById('EmpleadoAc').value = apellido_paciente;
+document.getElementById('FechaAc').value = fecha;
+document.getElementById('HoraAc').value = hora;
+document.getElementById('MotivoAct').value = motivo;
 
-  let modalActualizar = new bootstrap.Modal(document.getElementById('modalActualizacion'));
-  modalActualizar.show();
+// Crear select para estados
+const selectEstado = document.getElementById('EstadoAc');
+selectEstado.innerHTML = `
+<option value="Pendiente" ${estado_cita === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+<option value="Confirmada" ${estado_cita === 'Confirmada' ? 'selected' : ''}>Confirmada</option>
+<option value="Cancelada" ${estado_cita === 'Cancelada' ? 'selected' : ''}>Cancelada</option>
+`;
 
-  document.getElementById('__id_cita').value = id_cita;
-  document.getElementById('pacienteAc').value = nombre_paciente;
-  document.getElementById('EmpleadoAc').value = apellido_paciente;
-  document.getElementById('FechaAc').value = fecha;
-  document.getElementById('HoraAc').value = hora;
-  document.getElementById('MotivoAct').value = motivo;
-  document.getElementById('EstadoAc').value = estado_cita;
+let formulario = document.getElementById('formAct');
 
-  let formulario = document.getElementById('formAct');
-  formulario.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    let datos = new FormData(formulario);
+// Remover listeners anteriores
+const nuevoFormulario = formulario.cloneNode(true);
+formulario.parentNode.replaceChild(nuevoFormulario, formulario);
+formulario = nuevoFormulario;
 
-    let xml = new XMLHttpRequest();
-    xml.onload = function(){
-      formulario.reset();
-      modalActualizar.hide();
-      MostrarDatos();
-    }
-    const url = `./php/UpdateCita.php?id=${id_cita}`;
-    xml.open("POST", url, true);
-    xml.send(datos);
-  })
+formulario.addEventListener('submit', async (e) => {
+e.preventDefault();
+
+try {
+const estadoSeleccionado = document.getElementById('EstadoAc').value;
+const url = `./php/UpdateCita.php?id=${id_cita}&estado=${estadoSeleccionado}`;
+
+const response = await fetch(url, {
+method: 'POST',
+body: new FormData(formulario)
+});
+
+if (!response.ok) {
+throw new Error('Error al actualizar el estado');
 }
+
+// Actualizar tabla y cerrar modal
+formulario.reset();
+modalActualizar.hide();
+await MostrarDatos();
+
+// Mostrar mensaje de éxito
+mostrarNotificacion('Estado actualizado correctamente', 'success');
+
+} catch (error) {
+console.error('Error:', error);
+mostrarNotificacion('Error al actualizar el estado', 'error');
+}
+});
+}
+
+// Función auxiliar para mostrar notificaciones
+function mostrarNotificacion(mensaje, tipo) {
+const alertPlaceholder = document.getElementById('alertPlaceholder');
+const wrapper = document.createElement('div');
+
+wrapper.innerHTML = `
+<div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+${mensaje}
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+`;
+
+alertPlaceholder.append(wrapper);
+
+// Auto-cerrar después de 3 segundos
+setTimeout(() => {
+wrapper.firstElementChild.remove();
+}, 3000);
+}
+
 
 
 

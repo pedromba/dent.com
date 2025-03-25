@@ -35,12 +35,11 @@ include "./admin/conexion/conexion.php";
                     </p>
                     <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
                         <a href="./formularios.php" class="btn btn-primary me-3">Agenda tu cita</a>
+                        <br>
                         <a href="#servicios" class="btn btn-outline-light">Conoce nuestros servicios</a>
                     </div>
                 </div>
-                <!-- <div class="col-md-6 d-none d-md-block">
-                    <img src="./img/hero-img.png" alt="Sonrisa perfecta" class="img-fluid animate__animated animate__fadeInRight">
-                </div> -->
+                
             </div>
         </div>
     </header>
@@ -133,35 +132,32 @@ include "./admin/conexion/conexion.php";
                     FROM Empleados e 
                     INNER JOIN tipo_empleado t ON e.tipo_empleado = t.id_tipo 
                     WHERE t.tipo = 'Médico'
+                    ORDER BY e.id_empleado desc
                     LIMIT 3";
                 $result = mysqli_query($conexion, $sql);
 
                 while ($fila = mysqli_fetch_array($result)) {
 
                 ?>
-                    <div class="col-md-4 mb-4">
-
-                        <div class="doctor-card">
-                            <div class="doctor-img">
-                                <img src="./admin/img/empleados/<?php echo $fila['foto'] ?>" alt="Doctor">
+                 <div class="col-md-4 mb-4">
+                        <div class="testimonio-card">
+                            <div class="testimonio-texto">
+                                <i class="fas fa-quote-left"></i>
+                                <p><?php echo $fila['especialidad']?></p>
                             </div>
-                            <div class="doctor-info">
-                                <h3>Dr. <?php echo $fila['nombre'] ?></h3>
-                                <p class="especialidad"><?php echo $fila['especialidad'] ?></p>
-                                <p class="descripcion">Especialista en ortodoncia con más de 10 años de experiencia.</p>
-                                <div class="social-links">
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                            <div class="testimonio-autor">
+                                <img src="./admin/img/empleados/<?php echo $fila['foto']?>" alt="Paciente">
+                                <div>
+                                    <h4><?php echo $fila['nombre']?></h4>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
 
                 <?php  } ?>
-
-             
-
-               
+           
 
             </div>
         </div>
@@ -177,7 +173,7 @@ include "./admin/conexion/conexion.php";
 
                 <?php
 
-                $sql = "SELECT * FROM Testimonios  LIMIT 3";
+                $sql = "SELECT * FROM Testimonios ORDER BY id_testimonio DESC LIMIT 3";
                 $resultado = mysqli_query($conexion, $sql);
                 while ($fila = mysqli_fetch_array($resultado)) {
 
@@ -186,13 +182,13 @@ include "./admin/conexion/conexion.php";
                         <div class="testimonio-card">
                             <div class="testimonio-texto">
                                 <i class="fas fa-quote-left"></i>
-                                <p><?php echo $fila['testimonio'] ?></p>
+                                <p></p>
                             </div>
                             <div class="testimonio-autor">
                                 <img src="./img/descarga (12).jpeg" alt="Paciente">
                                 <div>
                                     <h4><?php echo $fila['Nombre'] ?></h4>
-                                    <p>Tratamiento de Ortodoncia</p>
+                                    <p><?php echo $fila['testimonio'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +209,7 @@ include "./admin/conexion/conexion.php";
     <!--contacto -->
     <section id="contacto" class="contacto py-5">
         <div class="container">
-            <h2 class="section-title">Contáctanos</h2>
+            <h2 class="section-title">Comentario</h2>
             <div class="row">
                 <!-- caja de contacto -->
                 <div class="col-md-4 mb-4">

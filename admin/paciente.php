@@ -29,12 +29,7 @@ $paciente = mysqli_fetch_array($resultado);
         <div class="header-container">
             <h1>Gestión de Pacientes</h1>
             <div class="header-actions">
-                <div class="search-box">
-                    <form action="" method="post">
-                        <input class="form-control" type="text" id="buscarPaciente" placeholder="Buscar paciente...">
-                        <i class="fas fa-search"></i>
-                    </form>
-                </div>
+                
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fas fa-user-plus"></i> Nuevo Paciente
                 </button>
